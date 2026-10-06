@@ -16,6 +16,9 @@ public class Skill
     // 1. set the name of the skill, 
     // initialize isUnlocked to false, 
     // and create an empty list of nextSkills
+    this.name = name;
+        isUnlocked = false;
+        nextSkills = new List<Skill>();
     }
 
     public void Unlock()
@@ -23,16 +26,22 @@ public class Skill
         if (!isAvailable)
         {
             // 2. throw an exception if the skill is not available to unlock
+            throw new System.Exception("Skill is not available to unlock");
         }
 
         if (isUnlocked)
         {
+            Debug.Log($"Skill{name} is already unlocked.");
             // 3. if the skill is already unlocked, log message and return
         }
 
         // 4. set isUnlocked to true
-
+        isUnlocked = true;
         // 5. set isAvailable to true for all nextSkills
+        for (int i = 0; i < nextSkills.Count; i++)
+        {
+            nextSkills[i].isAvailable = true;
+        }
     }
 
 
